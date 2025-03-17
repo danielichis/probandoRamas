@@ -1,0 +1,22 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+  displayName: 'Set up Python'
+
+- script: |
+    python -m pip install --upgrade pip
+    # Uncomment and modify if you have dependencies
+    # pip install -r requirements.txt
+  displayName: 'Install dependencies'
+
+- script: |
+    python subirinfo.py
+  displayName: 'Run subirinfo.py'
